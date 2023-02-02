@@ -44,4 +44,16 @@ public class P02_BookItTest extends BookItTestBase {
             .then()
                 .statusCode(200);
     }
+
+    @DisplayName("GET /api/users/me")
+    @Test
+    public void test3(){
+        given()
+                .accept(ContentType.JSON)
+                .auth().oauth2(accessToken)
+                .when()
+                .get("/api/users/me").prettyPeek()
+                .then()
+                .statusCode(200);
+    }
 }
