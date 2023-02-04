@@ -1,7 +1,11 @@
 package com.cydeo.day11;
 
+import io.restassured.http.ContentType;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 public class P05_CsvFileSourceTest {
 
@@ -27,5 +31,25 @@ public class P05_CsvFileSourceTest {
      *     MA,Boston,56
      *     MD,Annapolis,9
      */
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/zipcode.csv",numLinesToSkip = 1)
+    public void test2(String state,String city,int placeNumber){
+        System.out.println("state = " + state);
+        System.out.println("city = " + city);
+        System.out.println("placeNumber = " + placeNumber);
+
+        given()
+                .accept(ContentType.JSON)
+                .baseUri("https://api.zippopotam.us")
+                .pathParam("state",state)
+                .pathParam("city",city)
+                .when()
+                .get("/us/{state}/{city}")
+        .then()
+                .statusCode(200)
+                .body("places",hasSize(placeNumber));
+
+    }
 
 }
