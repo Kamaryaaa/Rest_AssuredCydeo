@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.is;
 
-public class Po1_OldRestAssured extends SpartanNewTestBase {
+public class P01_OldRestAssured extends SpartanNewTestBase {
 
     @Test
     public void getAllSpartan(){
