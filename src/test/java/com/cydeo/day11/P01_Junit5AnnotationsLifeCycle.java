@@ -19,7 +19,7 @@ public class P01_Junit5AnnotationsLifeCycle {
     public void test1(){
         System.out.println("------Test1 is running-----");
     }
-
+    @Disabled
     @Test
     public void test2(){
         System.out.println("------Test2 is running-----");
