@@ -5,6 +5,8 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.is;
@@ -91,18 +93,42 @@ public class P02_SpartanSpecTest extends SpartanNewTestBase {
      *
      */
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/GET_RBAC.csv",numLinesToSkip = 1)
+    public void getSingleSpartan_GET_RBAC(String username,String password,int id,int statusCode){
+                given()
+                        .spec(dynamicReqSpec(username,password))
+                        .pathParam("id",id)
+                .when()
+                        .get("/spartans/{id}")
+                .then()
+                        .spec(dynamicResSpec(statusCode));
+    }
+
 
     /**
      *  Create DELETE_RBAC.csv
-     *   username,password,id,statuscode
-     *
+     *   username,password,id,statusCode
      *    editor,editor,3,403
      *    user,user,3,403
      *    admin,admin,3,204
      *
-     *  Create a parameterized test to check RBAC for GET method
+     *  Create a parameterized test to check RBAC for DELETE method
      *
      *
      */
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/DELETE_RBAC.csv",numLinesToSkip = 1)
+    public void deleteSingleSpartan_DELETE_RBAC(String username, String password, int id, int statusCode){
+
+        given().spec(dynamicReqSpec(username,password))
+                .pathParam("id",id)
+        .when().delete("/spartans/{id}")
+                .then().spec(dynamicResSpec(statusCode));
+
+    }
+
+
 
 }
