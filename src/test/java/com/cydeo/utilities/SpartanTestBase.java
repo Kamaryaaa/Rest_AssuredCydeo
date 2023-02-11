@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 public abstract class SpartanTestBase {
 
-    public Logger log = LogManager.getLogger();
+    public Logger log = LogManager.getLogger(this.getClass());
 
     @BeforeAll
     public static void init(){
