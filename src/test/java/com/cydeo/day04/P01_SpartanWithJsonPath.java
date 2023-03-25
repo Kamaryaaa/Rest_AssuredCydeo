@@ -53,7 +53,7 @@ public class P01_SpartanWithJsonPath extends SpartanTestBase {
         //we saved our response as JSONPATH object
         JsonPath jsonPath = response.jsonPath();
 
-        int id = jsonPath.getInt("id[0]");
+        int id = jsonPath.getInt("id");
         String name = jsonPath.getString("name");
         String gender = jsonPath.getString("gender");
         long phone = jsonPath.getLong("phone");

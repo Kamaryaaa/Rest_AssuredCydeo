@@ -7,7 +7,7 @@ public abstract class HrTestBase {
 
     @BeforeAll
     public static void init(){
-        RestAssured.baseURI = "http://54.86.2.212:1000/ords/hr";
+        RestAssured.baseURI = "http://54.237.226.155:1000/ords/hr";
         //MyIpAddress:1000/ords/hr
     }
 }
