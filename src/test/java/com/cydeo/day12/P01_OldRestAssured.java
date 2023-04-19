@@ -34,8 +34,8 @@ public class P01_OldRestAssured extends SpartanNewTestBase {
         .expect()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("id[0]",is(1))
-                .body("id[1]",is(2))
+                .body("id[0]",is(261))
+                .body("id[1]",is(262))
         .when()
                 .get("/spartans");
 
@@ -47,4 +47,5 @@ public class P01_OldRestAssured extends SpartanNewTestBase {
     NEW WAY --> then() (this is one that we are using)
         -It works like hard assertion
   */
+
 }
